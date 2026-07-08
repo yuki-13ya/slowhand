@@ -10,26 +10,40 @@ Version: 0.6.1
 
 /***************************
  * ブランドカラー変数
- * SLOWHAND（青）/ ゆめみ堂（ピンク）共通のカラートークン。
+ * SLOWHAND（ミッドナイトブルー）/ ゆめみ堂（ラベンダー）共通のカラートークン。
  * 色を変更する場合はここだけ書き換える。
+ * 2026-07 配色リニューアル: 詳細はREADME/AGENTS.mdおよびコミット履歴を参照。
  * **************************/
 :root {
-  /* SLOWHAND ブルー */
-  --color-primary: #0048B6;
-  --color-primary-light: #8bbcff;
-  --color-primary-dark: #003f91;
-  --color-primary-surface: #f5f8fc;
-  --color-primary-tint-bg: #eef5ff;
-  --color-primary-tint-border: #d9e2f2;
-  --color-primary-footer-text: #d9e9ff;
-  --color-link: #0099d8;
+  /* 共通 */
+  --color-bg-base: #FAF8F4;
+  --color-text: #333333;
+  --color-border: #E5E1E8;
 
-  /* ゆめみ堂 ピンク */
-  --color-accent: #ec4fa5;
-  --color-accent-light: #f6b8db;
-  --color-accent-surface: #fff4fa;
-  --color-accent-tint-bg: #fce4f1;
-  --color-accent-tint-border: #f3bdd9;
+  /* SLOWHAND ミッドナイトブルー */
+  /* 指定値は #0F1C3D だが、ラベンダー側と並べたときに黒っぽく沈んで見えたため、
+     同じ色相・彩度を保ったまま明度だけ上げて調整（依頼者確認済み） */
+  --color-primary: #14285D;
+  --color-primary-light: #3A5CA8;
+  --color-primary-dark: var(--color-primary-light);
+  --color-primary-surface: var(--color-bg-base);
+  --color-primary-tint-bg: #EEF1F6;
+  --color-primary-tint-border: var(--color-border);
+  --color-primary-footer-text: var(--color-primary-light);
+  --color-link: var(--color-primary-light);
+
+  /* ゆめみ堂 ラベンダー */
+  /* 指定のメインカラーは #A886B8 だが、見出し・ボタン・アイコンで薄く見えすぎないよう少し濃いめに調整 */
+  --color-accent: #88569F;
+  --color-accent-light: #EADAF2;
+  --color-accent-surface: var(--color-bg-base);
+  --color-accent-tint-bg: var(--color-accent-light);
+  --color-accent-tint-border: var(--color-border);
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text);
 }
 
 /***************************
@@ -43,6 +57,7 @@ Version: 0.6.1
   margin: 50px 0 32px;
   margin-block-start: 50px;
   margin-block-end: 32px;
+  color: var(--color-primary);
   font-size: 36px;
   font-weight: 700;
   line-height: 1.4;
@@ -2011,7 +2026,7 @@ h2.section-heading {
   height: 78px;
   margin: 0 !important;
   border-radius: 50%;
-  background: var(--color-accent-tint-bg);
+  background: var(--color-primary-tint-bg);
   color: var(--color-primary);
   font-size: 34px;
   font-weight: 700;
