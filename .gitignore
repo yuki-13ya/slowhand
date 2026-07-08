@@ -1,0 +1,17 @@
+# このリポジトリは wp-content/themes/lightning-child とドキュメントのみを管理します。
+# WordPressコア・親テーマ・プラグイン・アップロード等は公式配布物/生成物のため対象外です。
+# 詳細は README.md「このリポジトリの管理範囲」を参照。
+
+/*
+
+!/.gitignore
+!/README.md
+!/AGENTS.md
+
+!/wp-content/
+/wp-content/*
+
+!/wp-content/themes/
+/wp-content/themes/*
+
+!/wp-content/themes/lightning-child/
