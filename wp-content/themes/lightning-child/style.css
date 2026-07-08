@@ -9,6 +9,30 @@ Version: 0.6.1
 */
 
 /***************************
+ * ブランドカラー変数
+ * SLOWHAND（青）/ ゆめみ堂（ピンク）共通のカラートークン。
+ * 色を変更する場合はここだけ書き換える。
+ * **************************/
+:root {
+  /* SLOWHAND ブルー */
+  --color-primary: #0048B6;
+  --color-primary-light: #8bbcff;
+  --color-primary-dark: #003f91;
+  --color-primary-surface: #f5f8fc;
+  --color-primary-tint-bg: #eef5ff;
+  --color-primary-tint-border: #d9e2f2;
+  --color-primary-footer-text: #d9e9ff;
+  --color-link: #0099d8;
+
+  /* ゆめみ堂 ピンク */
+  --color-accent: #ec4fa5;
+  --color-accent-light: #f6b8db;
+  --color-accent-surface: #fff4fa;
+  --color-accent-tint-bg: #fce4f1;
+  --color-accent-tint-border: #f3bdd9;
+}
+
+/***************************
  * 見出しH2　青い2色バーがついているもの
  * **************************/
 .section-heading {
@@ -32,10 +56,10 @@ Version: 0.6.1
   margin: 0 auto 18px;
   background: linear-gradient(
     to right,
-    #0048B6 0%,
-    #0048B6 50%,
-    #8bbcff 50%,
-    #8bbcff 100%
+    var(--color-primary) 0%,
+    var(--color-primary) 50%,
+    var(--color-primary-light) 50%,
+    var(--color-primary-light) 100%
   );
 }
 
@@ -86,11 +110,11 @@ h2.section-heading {
  * ヘッダー色
  * ***************/
 .site-header {
- background-color:#0048B6;
+ background-color:var(--color-primary);
 }
 .site-header.site-header--layout--nav-float
  {
- background-color:#0048B6;
+ background-color:var(--color-primary);
 }
 
 /*ロゴ*/
@@ -130,7 +154,7 @@ h2.section-heading {
  * フッター色
  * ***************/
 .site-footer {
- background-color:#0048B6;
+ background-color:var(--color-primary);
 }
 /* フッター内のテキスト */
 .site-footer,
@@ -194,7 +218,7 @@ h2.section-heading {
 
 .slowhand-footer-menu-list a:hover,
 .site-footer-content .row > div:nth-child(2) :where(a, .wp-block-navigation-item__content):hover {
-  color: #d9e9ff;
+  color: var(--color-primary-footer-text);
   text-decoration: none;
 }
 
@@ -211,7 +235,7 @@ h2.section-heading {
 .slowhand-footer-menu-label {
   display: block;
   padding: 6px 0 0;
-  color: #d9e9ff;
+  color: var(--color-primary-footer-text);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.35;
@@ -274,10 +298,10 @@ h2.section-heading {
   margin-top: 10px;
   background: linear-gradient(
     to right,
-    #0048B6 0,
-    #0048B6 64px,
-    #8bbcff 64px,
-    #8bbcff 100%
+    var(--color-primary) 0,
+    var(--color-primary) 64px,
+    var(--color-primary-light) 64px,
+    var(--color-primary-light) 100%
   );
 }
 
@@ -295,10 +319,10 @@ h2.section-heading {
     margin-top: 8px;
     background: linear-gradient(
       to right,
-      #0048B6 0,
-      #0048B6 56px,
-      #8bbcff 56px,
-      #8bbcff 100%
+      var(--color-primary) 0,
+      var(--color-primary) 56px,
+      var(--color-primary-light) 56px,
+      var(--color-primary-light) 100%
     );
   }
 
@@ -310,7 +334,7 @@ h2.section-heading {
 
 .entry-content a,
 .entry-body a {
-  color: #0099d8;
+  color: var(--color-link);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
@@ -322,12 +346,12 @@ h2.section-heading {
 .entry-body p a,
 .entry-body li a,
 .entry-body td a {
-  color: #0099d8 !important;
+  color: var(--color-link) !important;
 }
 
 .entry-content a:hover,
 .entry-body a:hover {
-  color: #0048B6;
+  color: var(--color-primary);
   text-decoration-thickness: 2px;
 }
 
@@ -386,16 +410,16 @@ h2.section-heading {
  * ゆめみ堂 見出し
  * ***********************/
 .page-id-10 .section-heading {
-  color: #ec4fa5;
+  color: var(--color-accent);
 }
 
 .page-id-10 .section-heading::before {
   background: linear-gradient(
     to right,
-    #ec4fa5 0%,
-    #ec4fa5 50%,
-    #f6b8db 50%,
-    #f6b8db 100%
+    var(--color-accent) 0%,
+    var(--color-accent) 50%,
+    var(--color-accent-light) 50%,
+    var(--color-accent-light) 100%
   );
 }
 
@@ -420,7 +444,7 @@ h2.section-heading {
   flex-direction: column;
   gap: 0;
   padding: 16px;
-  border: 2px solid #0048B6;
+  border: 2px solid var(--color-primary);
   border-radius: 8px;
   background: #fff;
   box-sizing: border-box;
@@ -461,7 +485,7 @@ h2.section-heading {
   border: 0;
   background: transparent;
   box-shadow: none;
-  color: #0048B6;
+  color: var(--color-primary);
   font-size: 28px;
   font-weight: 700;
   line-height: 1.4;
@@ -485,7 +509,7 @@ h2.section-heading {
 
 .slowhand-facility-card .top-facility-name,
 .slowhand-facility-card .wp-block-heading.top-facility-name {
-  color: #0048B6;
+  color: var(--color-primary);
 }
 
 .slowhand-facility-card .top-facility-name::before,
@@ -495,7 +519,7 @@ h2.section-heading {
 
 .yumemido-facility-card .top-facility-name,
 .yumemido-facility-card .wp-block-heading.top-facility-name {
-  color: #ec4fa5;
+  color: var(--color-accent);
 }
 
 .yumemido-facility-card .top-facility-name::before,
@@ -524,12 +548,12 @@ h2.section-heading {
 
 .slowhand-facility-card .top-facility-copy,
 .slowhand-facility-card p.top-facility-copy {
-  color: #0048B6;
+  color: var(--color-primary);
 }
 
 .yumemido-facility-card .top-facility-copy,
 .yumemido-facility-card p.top-facility-copy {
-  color: #ec4fa5;
+  color: var(--color-accent);
 }
 
 .top-facility-card .top-facility-copy + ul {
@@ -553,20 +577,20 @@ h2.section-heading {
 }
 
 .top-facility-card li::marker {
-  color: #0048B6;
+  color: var(--color-primary);
 }
 
 .yumemido-facility-card {
-  border-color: #ec4fa5;
+  border-color: var(--color-accent);
 }
 
 .yumemido-facility-card h3,
 .yumemido-facility-card .top-facility-name {
-  color: #ec4fa5;
+  color: var(--color-accent);
 }
 
 .yumemido-facility-card li::marker {
-  color: #ec4fa5;
+  color: var(--color-accent);
 }
 
 .facility-detail-button {
@@ -603,11 +627,11 @@ h2.section-heading {
 
 /* WordPress側に残る has-white-color より、施設誘導ボタンの設計色を優先する。 */
 .slowhand-facility-card .wp-block-button.facility-detail-button .wp-block-button__link {
-  color: #0048B6 !important;
+  color: var(--color-primary) !important;
 }
 
 .yumemido-facility-card .wp-block-button.facility-detail-button .wp-block-button__link {
-  color: #ec4fa5 !important;
+  color: var(--color-accent) !important;
 }
 
 @media (max-width: 991px) {
@@ -698,7 +722,7 @@ h2.section-heading {
   z-index: 2;
   margin: 0;
   padding: 8px 38px;
-  background: #0048B6;
+  background: var(--color-primary);
   color: #fff;
   font-size: 15px;
   font-weight: 700;
@@ -754,7 +778,7 @@ h2.section-heading {
   margin: 0;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #eef5ff;
+  background: var(--color-primary-tint-bg);
 }
 
 .top-news-card-image img {
@@ -774,11 +798,11 @@ h2.section-heading {
 }
 
 .top-news-card-category-event .news-label {
-  background: #ec4fa5;
+  background: var(--color-accent);
 }
 
 .top-news-card-category-music .news-label {
-  background: #0048B6;
+  background: var(--color-primary);
 }
 
 .top-news-card-category-topics .news-label {
@@ -796,7 +820,7 @@ h2.section-heading {
 
 .top-news-card .news-card-title a:hover,
 .top-news-card .news-card-title a:focus {
-  color: #0048B6;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -858,7 +882,7 @@ h2.section-heading {
   min-width: 0;
   margin: 0;
   padding: 0;
-  border: 1px solid #d9e2f2;
+  border: 1px solid var(--color-primary-tint-border);
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
@@ -873,7 +897,7 @@ h2.section-heading {
   aspect-ratio: 4 / 3;
   margin: 0;
   overflow: hidden;
-  background-color: #eef5ff;
+  background-color: var(--color-primary-tint-bg);
   background-position: center;
   background-size: cover;
 }
@@ -957,7 +981,7 @@ h2.section-heading {
 .blog .vk_posts-mainSection .vk_post_title a:hover,
 .archive .vk_posts-mainSection .vk_post_title a:hover,
 .search .vk_posts-mainSection .vk_post_title a:hover {
-  color: #0048B6;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -997,9 +1021,9 @@ h2.section-heading {
 .blog .vk_posts-mainSection .vk_post_btn,
 .archive .vk_posts-mainSection .vk_post_btn,
 .search .vk_posts-mainSection .vk_post_btn {
-  border: 1px solid #0048B6;
+  border: 1px solid var(--color-primary);
   border-radius: 4px;
-  background: #0048B6;
+  background: var(--color-primary);
   color: #fff;
   font-size: 14px;
   font-weight: 700;
@@ -1009,8 +1033,8 @@ h2.section-heading {
 .blog .vk_posts-mainSection .vk_post_btn:hover,
 .archive .vk_posts-mainSection .vk_post_btn:hover,
 .search .vk_posts-mainSection .vk_post_btn:hover {
-  border-color: #003f91;
-  background: #003f91;
+  border-color: var(--color-primary-dark);
+  background: var(--color-primary-dark);
   color: #fff;
   text-decoration: none;
 }
@@ -1087,10 +1111,10 @@ h2.section-heading {
   min-width: 38px;
   height: 38px;
   padding: 0 10px;
-  border: 1px solid #d9e2f2;
+  border: 1px solid var(--color-primary-tint-border);
   border-radius: 4px;
   background: #fff;
-  color: #0048B6;
+  color: var(--color-primary);
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
@@ -1101,17 +1125,17 @@ h2.section-heading {
 .blog .pagination .page-numbers a:hover,
 .archive .pagination .page-numbers a:hover,
 .search .pagination .page-numbers a:hover {
-  border-color: #0048B6;
-  background: #eef7ff;
-  color: #0048B6;
+  border-color: var(--color-primary);
+  background: var(--color-primary-tint-bg);
+  color: var(--color-primary);
   text-decoration: none;
 }
 
 .blog .pagination .page-numbers .current,
 .archive .pagination .page-numbers .current,
 .search .pagination .page-numbers .current {
-  border-color: #0048B6;
-  background: #0048B6;
+  border-color: var(--color-primary);
+  background: var(--color-primary);
   color: #fff;
 }
 
@@ -1246,10 +1270,10 @@ h2.section-heading {
   margin-top: 10px;
   background: linear-gradient(
     to right,
-    #0048B6 0,
-    #0048B6 64px,
-    #8bbcff 64px,
-    #8bbcff 100%
+    var(--color-primary) 0,
+    var(--color-primary) 64px,
+    var(--color-primary-light) 64px,
+    var(--color-primary-light) 100%
   );
 }
 
@@ -1308,10 +1332,10 @@ h2.section-heading {
     margin-top: 8px;
     background: linear-gradient(
       to right,
-      #0048B6 0,
-      #0048B6 56px,
-      #8bbcff 56px,
-      #8bbcff 100%
+      var(--color-primary) 0,
+      var(--color-primary) 56px,
+      var(--color-primary-light) 56px,
+      var(--color-primary-light) 100%
     );
   }
 
@@ -1365,7 +1389,7 @@ h2.section-heading {
   font-size: 28px;
   font-weight: 700;
   line-height: 1.6;
-  color: #0048B6;
+  color: var(--color-primary);
   text-align: center;
 }
 
@@ -1389,7 +1413,7 @@ h2.section-heading {
   padding: 12px 18px;
   border: 0;
   border-radius: 6px;
-  background: #eef7ff;
+  background: var(--color-primary-tint-bg);
   box-shadow: none;
   color: #222;
   font-size: 22px;
@@ -1448,7 +1472,7 @@ h2.section-heading {
   min-width: 240px;
   padding: 13px 26px;
   border-radius: 6px;
-  background: #0048B6;
+  background: var(--color-primary);
   color: #fff;
   font-weight: 700;
   line-height: 1.5;
@@ -1458,7 +1482,7 @@ h2.section-heading {
 }
 
 .page-id-16 .access-google-button-wrap .access-button .wp-block-button__link:hover {
-  background: #003f91;
+  background: var(--color-primary-dark);
   color: #fff;
   text-decoration: none;
 }
@@ -1488,14 +1512,14 @@ h2.section-heading {
 .page-id-16 .access-text-nav a {
   display: inline-block;
   padding: 2px 4px;
-  color: #0048B6 !important;
+  color: var(--color-primary) !important;
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .page-id-16 .access-text-nav a:hover {
-  color: #003f91;
+  color: var(--color-primary-dark);
 }
 
 
@@ -1513,7 +1537,7 @@ h2.section-heading {
 .page-id-16 .access-parking-card {
   padding: 18px 18px 16px;
   background: #fff;
-  border: 1px solid #d7e3f4;
+  border: 1px solid var(--color-primary-tint-border);
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 72, 182, 0.08);
 }
@@ -1534,13 +1558,13 @@ h2.section-heading {
 }
 
 .page-id-16 .access-parking-name a {
-  color: #0048B6 !important;
+  color: var(--color-primary) !important;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .page-id-16 .access-parking-name a:hover {
-  color: #003f9f;
+  color: var(--color-primary-dark);
 }
 
 
@@ -1578,7 +1602,7 @@ h2.section-heading {
   .page-id-16 .access-text-nav a {
     display: block;
     padding: 10px 12px;
-    border: 1px solid #d7e3f4;
+    border: 1px solid var(--color-primary-tint-border);
     border-radius: 6px;
     background: #fff;
     text-decoration: none;
@@ -1607,7 +1631,7 @@ h2.section-heading {
   .page-id-16 .access-parking-card {
     width: 100%;
     padding: 12px 14px;
-    border-left: 4px solid #0048B6;
+    border-left: 4px solid var(--color-primary);
     border-radius: 6px;
     box-shadow: none;
   }
@@ -1632,8 +1656,8 @@ h2.section-heading {
   max-width: 980px;
   margin: 56px auto 24px;
   padding: 14px 20px;
-  border-left: 6px solid #0048B6;
-  background: #f5f8fc;
+  border-left: 6px solid var(--color-primary);
+  background: var(--color-primary-surface);
   color: #222;
   font-size: 24px;
   font-weight: 700;
@@ -1641,20 +1665,20 @@ h2.section-heading {
 }
 
 .faq-category-title.faq-category-yumemido {
-  border-left-color: #ec4fa5;
-  background: #fff4fa;
+  border-left-color: var(--color-accent);
+  background: var(--color-accent-surface);
 }
 
 .faq-category-title.faq-category-slowhand {
-  border-left-color: #0048B6;
-  background: #f5f8fc;
+  border-left-color: var(--color-primary);
+  background: var(--color-primary-surface);
 }
 
 .faq-item {
   max-width: 980px;
   margin: 0 auto 20px;
   padding: 28px 32px;
-  border: 1px solid #d9e2f2;
+  border: 1px solid var(--color-primary-tint-border);
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 4px 14px rgba(0, 72, 182, 0.06);
@@ -1679,7 +1703,7 @@ h2.section-heading {
 
 .faq-item .vk_faq_title {
   padding-bottom: 18px;
-  border-bottom: 1px solid #eef2f8;
+  border-bottom: 1px solid var(--color-primary-tint-border);
 }
 
 .faq-item .vk_faq_content {
@@ -1704,14 +1728,14 @@ h2.section-heading {
 
 .faq-item .vk_faq_title::before {
   content: "Q";
-  background: #0048B6;
+  background: var(--color-primary);
   color: #fff;
 }
 
 .faq-item .vk_faq_content::before {
   content: "A";
-  background: #eef5ff;
-  color: #0048B6;
+  background: var(--color-primary-tint-bg);
+  color: var(--color-primary);
 }
 
 .faq-item .vk_faq_title p {
@@ -1730,35 +1754,35 @@ h2.section-heading {
 }
 
 .faq-item.faq-item-yumemido {
-  border-color: #f3bdd9;
+  border-color: var(--color-accent-tint-border);
   box-shadow: 0 4px 14px rgba(236, 79, 165, 0.08);
 }
 
 .faq-item.faq-item-yumemido .vk_faq_title::before {
-  background: #ec4fa5;
+  background: var(--color-accent);
 }
 
 .faq-item.faq-item-yumemido .vk_faq_content::before {
-  background: #fff4fa;
-  color: #ec4fa5;
+  background: var(--color-accent-surface);
+  color: var(--color-accent);
 }
 
 .faq-item.faq-item-yumemido .vk_faq_title {
-  border-bottom-color: #f9d8ea;
+  border-bottom-color: var(--color-accent-tint-border);
 }
 
 .faq-item.faq-item-slowhand {
-  border-color: #d9e2f2;
+  border-color: var(--color-primary-tint-border);
   box-shadow: 0 4px 14px rgba(0, 72, 182, 0.06);
 }
 
 .faq-item.faq-item-slowhand .vk_faq_title::before {
-  background: #0048B6;
+  background: var(--color-primary);
 }
 
 .faq-item.faq-item-slowhand .vk_faq_content::before {
-  background: #eef5ff;
-  color: #0048B6;
+  background: var(--color-primary-tint-bg);
+  color: var(--color-primary);
 }
 
 /* スマホ */
@@ -1811,7 +1835,7 @@ h2.section-heading {
 
 /* 各カラムをボタン風にする */
 .slowhand-page-nav > .wp-block-column {
-  border: 2px solid #0048B6;
+  border: 2px solid var(--color-primary);
   background: #fff;
   min-height: 92px;
   display: flex;
@@ -1824,7 +1848,7 @@ h2.section-heading {
 .slowhand-page-nav h3 {
   margin: 0;
   padding: 0;
-  color: #0048B6;
+  color: var(--color-primary);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.4;
@@ -1833,28 +1857,29 @@ h2.section-heading {
 }
 
 .slowhand-page-nav a {
-  color: #0048B6 !important;
+  color: var(--color-primary) !important;
   text-decoration: none;
 }
 
 .slowhand-page-nav a:hover {
-  color: #0048B6 !important;
+  color: var(--color-primary) !important;
   text-decoration: none;
 }
 
 .slowhand-page-nav > .wp-block-column:hover {
-  background: #eef7ff;
+  background: var(--color-primary-tint-bg);
 }
 
 .slowhand-page-nav > .wp-block-column:hover h3,
 .slowhand-page-nav > .wp-block-column:hover a {
-  color: #0048B6 !important;
+  color: var(--color-primary) !important;
 }
 
 /* 現在ページの枠 */
 .slowhand-page-nav > .wp-block-column.is-current {
-  outline: 3px solid #7b2cff;
+  outline: 3px solid var(--color-primary-light);
   outline-offset: 2px;
+  background: var(--color-primary-tint-bg);
 }
 
 /* スマホ対応：2列2行 */
@@ -1890,7 +1915,7 @@ h2.section-heading {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding: 56px 24px 80px;
-  background: #eef7ff;
+  background: var(--color-primary-tint-bg);
   box-sizing: border-box;
 }
 
@@ -1936,11 +1961,11 @@ h2.section-heading {
   min-height: 72px;
   margin: 0 !important;
   padding: 14px 10px;
-  border: 1px solid #d7e4f5;
+  border: 1px solid var(--color-primary-tint-border);
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 72, 182, 0.06);
-  color: #0048B6;
+  color: var(--color-primary);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.35;
@@ -1986,8 +2011,8 @@ h2.section-heading {
   height: 78px;
   margin: 0 !important;
   border-radius: 50%;
-  background: #fce4f1;
-  color: #0048B6;
+  background: var(--color-accent-tint-bg);
+  color: var(--color-primary);
   font-size: 34px;
   font-weight: 700;
   line-height: 1;
@@ -1995,7 +2020,7 @@ h2.section-heading {
 
 .slowhand-feature-card h3 {
   margin: 0 0 12px !important;
-  color: #0048B6;
+  color: var(--color-primary);
   font-size: 22px;
   font-weight: 700;
   line-height: 1.5;
@@ -2056,7 +2081,7 @@ h2.section-heading {
     gap: 12px;
     min-height: auto;
     padding: 12px 14px;
-    border: 1px solid #d7e4f5;
+    border: 1px solid var(--color-primary-tint-border);
     border-radius: 6px;
     box-shadow: none;
   }
@@ -2098,7 +2123,7 @@ h2.section-heading {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding: 56px 24px 80px;
-  background: #fff4fa;
+  background: var(--color-accent-surface);
   box-sizing: border-box;
 }
 
@@ -2144,11 +2169,11 @@ h2.section-heading {
   min-height: 72px;
   margin: 0 !important;
   padding: 14px 10px;
-  border: 1px solid #f3bfdc;
+  border: 1px solid var(--color-accent-tint-border);
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(236, 79, 165, 0.10);
-  color: #ec4fa5;
+  color: var(--color-accent);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.35;
@@ -2195,8 +2220,8 @@ h2.section-heading {
   height: 78px;
   margin: 0 !important;
   border-radius: 50%;
-  background: #fde2f1;
-  color: #ec4fa5;
+  background: var(--color-accent-tint-bg);
+  color: var(--color-accent);
   font-size: 34px;
   font-weight: 700;
   line-height: 1;
@@ -2204,7 +2229,7 @@ h2.section-heading {
 
 .yumemido-feature-card h3 {
   margin: 0 0 12px !important;
-  color: #ec4fa5;
+  color: var(--color-accent);
   font-size: 22px;
   font-weight: 700;
   line-height: 1.5;
@@ -2265,7 +2290,7 @@ h2.section-heading {
     gap: 12px;
     min-height: auto;
     padding: 12px 14px;
-    border: 1px solid #f3bfdc;
+    border: 1px solid var(--color-accent-tint-border);
     border-radius: 6px;
     box-shadow: none;
   }
@@ -2314,7 +2339,7 @@ h2.section-heading {
 
 /* 各カラムをボタン風にする */
 .yumemido-page-nav > .wp-block-column {
-  border: 2px solid #ec4fa5;
+  border: 2px solid var(--color-accent);
   background: #fff;
   min-height: 92px;
   display: flex;
@@ -2327,7 +2352,7 @@ h2.section-heading {
 .yumemido-page-nav h3 {
   margin: 0;
   padding: 0;
-  color: #ec4fa5;
+  color: var(--color-accent);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.4;
@@ -2336,25 +2361,25 @@ h2.section-heading {
 }
 
 .yumemido-page-nav a {
-  color: #ec4fa5 !important;
+  color: var(--color-accent) !important;
   text-decoration: none;
 }
 
 .yumemido-page-nav a:hover {
-  color: #ec4fa5 !important;
+  color: var(--color-accent) !important;
   text-decoration: none;
 }
 
 /* 現在ページの枠 */
 .yumemido-page-nav > .wp-block-column.is-current {
-  outline: 3px solid #f6b8db;
+  outline: 3px solid var(--color-accent-light);
   outline-offset: 2px;
-  background: #fff4fa;
+  background: var(--color-accent-surface);
 }
 
 /* ホバー時 */
 .yumemido-page-nav > .wp-block-column:hover {
-  background: #fff4fa;
+  background: var(--color-accent-surface);
 }
 
 /* スマホ対応：2列2行 */
@@ -2398,7 +2423,7 @@ h2.section-heading {
 .price-table:not(.yumemido-price-table) thead th,
 .slowhand-price-table thead th,
 .price-table.slowhand-price-table thead th {
-  background: #0048B6;
+  background: var(--color-primary);
   color: #fff;
   text-align: center;
   font-weight: 700;
@@ -2408,7 +2433,7 @@ h2.section-heading {
 
 .yumemido-price-table thead th,
 .price-table.yumemido-price-table thead th {
-  background: #ec4fa5;
+  background: var(--color-accent);
   color: #fff;
   text-align: center;
   font-weight: 700;
@@ -2490,7 +2515,7 @@ h2.section-heading {
   margin: 0 0 14px;
   padding: 6px 14px;
   border: 0;
-  background: #e8f5ff;
+  background: var(--color-primary-tint-bg);
   color: #222;
   box-shadow: none;
   font-size: 20px;
@@ -2511,7 +2536,7 @@ h2.section-heading {
 }
 
 .page-id-10 .equipment-label {
-  background: #fff4fa;
+  background: var(--color-accent-surface);
   color: #222;
 }
 /*************************
@@ -2549,8 +2574,8 @@ h2.section-heading {
   margin-top: -24px;
   padding: 9px 18px;
   background: #fff;
-  border: 1.5px solid #ec4fa5;
-  color: #ec4fa5;
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-accent);
   font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
