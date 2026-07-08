@@ -40,7 +40,27 @@ wp-content/themes/lightning-child/
 
 ## ローカルでの作業
 
-現状、ローカルにWordPress実行環境（DB/PHPサーバー）は用意していません。本番からファイルを同期してコードを編集し、目視・ステージング等で確認してから本番へ反映する運用です。
+[Local](https://localwp.com/)（Local by Flywheel）を使ってローカルにWordPress実行環境を用意します。
+
+### 初回セットアップ
+
+1. Localで新規サイトを作成する（PHPバージョンは本番のXServer環境に合わせる。WordPressコアは本番と同じ7.0系を使う）
+2. 本番のDB・アップロード画像を同期する
+   - 本番には `UpdraftPlus` プラグインが導入済みなので、wp-admin からバックアップを取得し、Localの該当サイトへリストアするのが手早い
+   - （UpdraftPlusのバックアップには子テーマ自体も含まれるが、コードの実体は次の手順でこのリポジトリに置き換える）
+3. テーマをこのリポジトリに一本化する
+   - Localサイトの `wp-content/themes/lightning-child` を削除し、代わりにこのリポジトリの `wp-content/themes/lightning-child` をシンボリックリンクで配置する（コピー運用にすると差分がリポジトリと乖離するため避ける）
+   - Windows（管理者権限のコマンドプロンプト）での例:
+     ```
+     mklink /D "C:\Users\<user>\Local Sites\<site-name>\app\public\wp-content\themes\lightning-child" "D:\website\slowhand\slowhand\wp-content\themes\lightning-child"
+     ```
+4. wp-admin の「外観 > テーマ」で `Lightning Child` が有効になっていることを確認する
+
+### 通常の作業フロー
+
+1. このリポジトリの `wp-content/themes/lightning-child` を編集する（シンボリックリンク経由でLocalサイトにも即反映される）
+2. LocalでサイトのURLを開き、目視で確認する
+3. 問題なければコミットし、README「本番反映」の手順でFTP/SFTPアップロードする
 
 ## 本番反映（デプロイ）
 
