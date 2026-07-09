@@ -52,7 +52,8 @@ body {
 /* 大見出し・タイトルのみ明朝系。本文・ナビ・ボタンはbodyのゴシックを継承する */
 h1,
 h2,
-.section-heading {
+.section-heading,
+.ltg-slide-text-title {
   font-family: var(--font-heading);
 }
 
