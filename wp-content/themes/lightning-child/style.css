@@ -20,6 +20,10 @@ Version: 0.6.1
   --color-text: #333333;
   --color-border: #E5E1E8;
 
+  /* フォント: 大見出しのみ明朝系、本文・ナビ・ボタンはゴシック系 */
+  --font-heading: "Noto Serif JP", serif;
+  --font-body: "Noto Sans JP", sans-serif;
+
   /* SLOWHAND ミッドナイトブルー */
   /* 指定値は #0F1C3D だが、ラベンダー側と並べたときに黒っぽく沈んで見えたため、
      同じ色相・彩度を保ったまま明度だけ上げて調整（依頼者確認済み） */
@@ -44,6 +48,23 @@ Version: 0.6.1
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+/* 大見出し・タイトルのみ明朝系。本文・ナビ・ボタンはbodyのゴシックを継承する */
+h1,
+h2,
+.section-heading {
+  font-family: var(--font-heading);
+}
+
+/* フォームコントロールはブラウザ既定のUIフォントになりやすいため明示的に指定 */
+button,
+input,
+select,
+textarea,
+.wp-block-button__link {
+  font-family: var(--font-body);
 }
 
 /***************************
