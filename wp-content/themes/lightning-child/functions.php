@@ -276,3 +276,37 @@ function slowhand_child_add_footer_menu_to_center_widget( $params ) {
 
 	return $params;
 }
+
+/* LINE相談フローティングボタン（全ページ共通） */
+add_action( 'wp_footer', 'slowhand_child_render_line_buttons' );
+function slowhand_child_render_line_buttons() {
+	$buttons = array(
+		array(
+			'brand' => 'slowhand',
+			'label' => 'SLOWHAND',
+			'url'   => 'https://line.me/R/ti/p/@096nzseo',
+		),
+		array(
+			'brand' => 'yumemido',
+			'label' => 'ゆめみ堂',
+			'url'   => 'https://lin.ee/9IC25cY',
+		),
+	);
+	?>
+	<div class="slowhand-line-buttons">
+		<?php foreach ( $buttons as $button ) : ?>
+			<a
+				class="slowhand-line-button slowhand-line-button-<?php echo esc_attr( $button['brand'] ); ?>"
+				href="<?php echo esc_url( $button['url'] ); ?>"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<span class="slowhand-line-button-icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.69 2 11.2c0 4.05 3.58 7.44 8.42 8.08.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1 .87.55s5.78-3.4 7.89-5.83C21.44 14.6 22 13 22 11.2 22 6.69 17.52 3 12 3z"/></svg>
+				</span>
+				<span class="slowhand-line-button-label"><?php echo esc_html( $button['label'] ); ?><br>LINEでご予約</span>
+			</a>
+		<?php endforeach; ?>
+	</div>
+	<?php
+}
