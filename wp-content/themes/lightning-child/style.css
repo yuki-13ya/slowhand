@@ -313,8 +313,8 @@ h2.section-heading {
  * H3見出し
  * ***********************/
 
-.page-id-12 .entry-content :where(h3:not(.section-heading):not(.top-facility-name):not(.equipment-label)),
-.page-id-12 .entry-body :where(h3:not(.section-heading):not(.top-facility-name):not(.equipment-label)) {
+.page-terms .entry-content :where(h3:not(.section-heading):not(.top-facility-name):not(.equipment-label)),
+.page-terms .entry-body :where(h3:not(.section-heading):not(.top-facility-name):not(.equipment-label)) {
   position: relative;
   margin: 52px 0 22px;
   padding-bottom: 12px;
@@ -324,8 +324,8 @@ h2.section-heading {
   line-height: 1.4;
 }
 
-.page-id-12 .entry-content h3.wp-block-heading:not(.section-heading):not(.top-facility-name):not(.equipment-label)::after,
-.page-id-12 .entry-body h3.wp-block-heading:not(.section-heading):not(.top-facility-name):not(.equipment-label)::after {
+.page-terms .entry-content h3.wp-block-heading:not(.section-heading):not(.top-facility-name):not(.equipment-label)::after,
+.page-terms .entry-body h3.wp-block-heading:not(.section-heading):not(.top-facility-name):not(.equipment-label)::after {
   content: "";
   display: block;
   width: 140px;
@@ -341,15 +341,15 @@ h2.section-heading {
 }
 
 @media (max-width: 767px) {
-  .page-id-12 .entry-content :where(h3:not(.section-heading):not(.top-facility-name):not(.equipment-label)),
-  .page-id-12 .entry-body :where(h3:not(.section-heading):not(.top-facility-name):not(.equipment-label)) {
+  .page-terms .entry-content :where(h3:not(.section-heading):not(.top-facility-name):not(.equipment-label)),
+  .page-terms .entry-body :where(h3:not(.section-heading):not(.top-facility-name):not(.equipment-label)) {
     margin: 28px 0 14px;
     padding-bottom: 10px;
     font-size: 20px;
   }
 
-  .page-id-12 .entry-content h3.wp-block-heading:not(.section-heading):not(.top-facility-name):not(.equipment-label)::after,
-  .page-id-12 .entry-body h3.wp-block-heading:not(.section-heading):not(.top-facility-name):not(.equipment-label)::after {
+  .page-terms .entry-content h3.wp-block-heading:not(.section-heading):not(.top-facility-name):not(.equipment-label)::after,
+  .page-terms .entry-body h3.wp-block-heading:not(.section-heading):not(.top-facility-name):not(.equipment-label)::after {
     width: 100px;
     margin-top: 8px;
     background: linear-gradient(
@@ -394,61 +394,61 @@ h2.section-heading {
  * 本文幅
  * ***********************/
 
-.page-id-12 .info-page-section p,
-.page-id-12 .info-page-section > h3:not(.section-heading):not(.equipment-label):not(.faq-category-title),
-.page-id-12 .info-page-section > ul,
-.page-id-12 .info-page-section > ol,
-.page-id-14 .entry-body p.wp-block-paragraph,
-.page-id-14 .entry-content p.wp-block-paragraph,
-.page-id-14 .entry-body > h3.wp-block-heading:not(.section-heading),
-.page-id-14 .entry-content > h3.wp-block-heading:not(.section-heading),
-.page-id-14 .entry-body > ul,
-.page-id-14 .entry-content > ul,
-.page-id-14 .entry-body > ol,
-.page-id-14 .entry-content > ol,
+.page-terms .info-page-section p,
+.page-terms .info-page-section > h3:not(.section-heading):not(.equipment-label):not(.faq-category-title),
+.page-terms .info-page-section > ul,
+.page-terms .info-page-section > ol,
+.page-company .entry-body p.wp-block-paragraph,
+.page-company .entry-content p.wp-block-paragraph,
+.page-company .entry-body > h3.wp-block-heading:not(.section-heading),
+.page-company .entry-content > h3.wp-block-heading:not(.section-heading),
+.page-company .entry-body > ul,
+.page-company .entry-content > ul,
+.page-company .entry-body > ol,
+.page-company .entry-content > ol,
 .access-hero > p:not(.access-lead),
 .access-help-box > p,
 .access-section > p,
 .access-section > ol,
-.page-id-307 .entry-body p.wp-block-paragraph,
-.page-id-307 .entry-content p.wp-block-paragraph {
+.page-qa .entry-body p.wp-block-paragraph,
+.page-qa .entry-content p.wp-block-paragraph {
   max-width: 800px;
   margin-right: auto;
   margin-left: auto;
 }
 
-.page-id-14 .entry-body > p,
-.page-id-14 .entry-content > p {
+.page-company .entry-body > p,
+.page-company .entry-content > p {
   line-height: 1.9;
 }
 
-.page-id-12 .info-page-section,
-.page-id-14 .entry-body,
-.page-id-14 .entry-content,
+.page-terms .info-page-section,
+.page-company .entry-body,
+.page-company .entry-content,
 .access-page,
-.page-id-307 .entry-body,
-.page-id-307 .entry-content {
+.page-qa .entry-body,
+.page-qa .entry-content {
   --wp--style--global--content-size: 800px;
 }
 
-.page-id-12 .wp-block-table.info-table,
-.page-id-14 .wp-block-table.info-table,
+.page-terms .wp-block-table.info-table,
+.page-company .wp-block-table.info-table,
 .access-map-image,
 .access-text-nav,
 .access-parking-list,
-.page-id-307 .faq-category-title,
-.page-id-307 .faq-item {
+.page-qa .faq-category-title,
+.page-qa .faq-item {
   max-width: 980px;
 }
 
 /*************************
  * ゆめみ堂 見出し
  * ***********************/
-.page-id-10 .section-heading {
+.page-yumemido .section-heading {
   color: var(--color-accent);
 }
 
-.page-id-10 .section-heading::before {
+.page-yumemido .section-heading::before {
   background: linear-gradient(
     to right,
     var(--color-accent) 0%,
@@ -1243,16 +1243,16 @@ h2.section-heading {
 }
 
 /* 固定ページごとの下層ヒーロー画像 */
-.page-id-8 .page-header {
+.page-slowhand .page-header {
   background-image: url("images/slowhand-hero.jpg");
 }
 
-.page-id-10 .page-header {
+.page-yumemido .page-header {
   background-image: url("images/yumemido-hero.jpg");
 }
 
-.page-id-12 .page-header,
-.page-id-14 .page-header {
+.page-terms .page-header,
+.page-company .page-header {
   background-image: url("images/aboutus-hero.jpg");
 }
 
@@ -1260,7 +1260,7 @@ h2.section-heading {
   background-image: url("images/access-hero.jpg");
 }
 
-.page-id-307 .page-header {
+.page-qa .page-header {
   background-image: url("images/qa-hero.jpg");
 }
 
@@ -1279,7 +1279,7 @@ h2.section-heading {
   box-sizing: border-box;
 }
 
-.page-id-12 .info-page-section h3:not(.equipment-label):not(.faq-category-title) {
+.page-terms .info-page-section h3:not(.equipment-label):not(.faq-category-title) {
   position: relative;
   margin: 52px 0 22px;
   margin-block-start: 52px;
@@ -1297,7 +1297,7 @@ h2.section-heading {
   line-height: 1.4;
 }
 
-.page-id-12 .info-page-section h3:not(.equipment-label):not(.faq-category-title)::after {
+.page-terms .info-page-section h3:not(.equipment-label):not(.faq-category-title)::after {
   content: "";
   display: block;
   width: 140px;
@@ -1312,8 +1312,8 @@ h2.section-heading {
   );
 }
 
-.page-id-12 .info-page-section > h3:not(.equipment-label):not(.faq-category-title),
-.page-id-12 .info-page-section > .wp-block-heading:not(.section-heading):not(.equipment-label):not(.faq-category-title) {
+.page-terms .info-page-section > h3:not(.equipment-label):not(.faq-category-title),
+.page-terms .info-page-section > .wp-block-heading:not(.section-heading):not(.equipment-label):not(.faq-category-title) {
   margin-top: 52px;
   margin-block-start: 52px !important;
 }
@@ -1354,7 +1354,7 @@ h2.section-heading {
     padding: 0;
   }
 
-  .page-id-12 .info-page-section h3:not(.equipment-label):not(.faq-category-title) {
+  .page-terms .info-page-section h3:not(.equipment-label):not(.faq-category-title) {
     margin: 28px 0 14px;
     margin-block-start: 28px;
     margin-block-end: 14px;
@@ -1362,7 +1362,7 @@ h2.section-heading {
     font-size: 20px;
   }
 
-  .page-id-12 .info-page-section h3:not(.equipment-label):not(.faq-category-title)::after {
+  .page-terms .info-page-section h3:not(.equipment-label):not(.faq-category-title)::after {
     width: 100px;
     margin-top: 8px;
     background: linear-gradient(
@@ -1374,8 +1374,8 @@ h2.section-heading {
     );
   }
 
-  .page-id-12 .info-page-section > h3:not(.equipment-label):not(.faq-category-title),
-  .page-id-12 .info-page-section > .wp-block-heading:not(.section-heading):not(.equipment-label):not(.faq-category-title) {
+  .page-terms .info-page-section > h3:not(.equipment-label):not(.faq-category-title),
+  .page-terms .info-page-section > .wp-block-heading:not(.section-heading):not(.equipment-label):not(.faq-category-title) {
     margin-top: 28px;
     margin-block-start: 28px !important;
   }
@@ -2570,7 +2570,7 @@ h2.section-heading {
   margin-top: 0;
 }
 
-.page-id-10 .equipment-label {
+.page-yumemido .equipment-label {
   background: var(--color-accent-tint-bg);
   color: #222;
 }

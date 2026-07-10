@@ -6,6 +6,26 @@
  */
 
 /************************************************
+ * 固定ページのスラッグを body class に追加
+ *
+ * デフォルトでは page-id-123 のような数字のクラスしか付かず、
+ * CSS側でどのページか読み取れない。スラッグ由来のクラス（page-slug）を
+ * 足すことで、CSSセレクタを意味の分かる名前で書けるようにする。
+ */
+add_filter(
+	'body_class',
+	function ( $classes ) {
+		if ( is_page() ) {
+			$slug = get_post_field( 'post_name' );
+			if ( $slug ) {
+				$classes[] = 'page-' . sanitize_html_class( $slug );
+			}
+		}
+		return $classes;
+	}
+);
+
+/************************************************
  * Google Fonts 読み込み
  * 大見出し: Noto Serif JP / 本文・ナビ・ボタン: Noto Sans JP
  */
