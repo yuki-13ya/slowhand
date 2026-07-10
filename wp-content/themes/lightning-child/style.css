@@ -2486,7 +2486,7 @@ h2.section-heading {
 }
 
 /* 料金表：スマホ */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .price-table table,
   .price-table thead,
   .price-table tbody,
