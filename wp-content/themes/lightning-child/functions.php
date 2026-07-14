@@ -329,4 +329,43 @@ function slowhand_child_render_line_buttons() {
 		<?php endforeach; ?>
 	</div>
 	<?php
+	if ( is_front_page() ) :
+		?>
+		<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			var target = document.querySelector('.top-facility-cards');
+			var buttons = document.querySelector('.slowhand-line-buttons');
+			if (!target || !buttons || !('IntersectionObserver' in window)) {
+				return;
+			}
+			var observer = new IntersectionObserver(function (entries) {
+				entries.forEach(function (entry) {
+					buttons.classList.toggle('is-hero-visible', entry.isIntersecting);
+				});
+			});
+			observer.observe(target);
+		});
+		</script>
+		<?php
+	endif;
+}
+
+/************************************************
+ * ヘッダー: テキストロゴ（1段構成）
+ *
+ * 既存の site-header-logo（サイトタイトルのテキスト）はCSSで視覚的に隠し、
+ * その直後に2行構成の独自ロゴHTMLを差し込む。
+ * サイトタイトルの値自体（wp_options.blogname）は変更しないため、
+ * <title>タグやOGP等の出力には影響しない。
+ */
+add_action( 'lightning_site_header_logo_after', 'slowhand_child_render_header_logo_and_cta' );
+function slowhand_child_render_header_logo_and_cta() {
+	?>
+	<div class="slowhand-header-logo">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<span class="slowhand-header-logo-brand">SLOWHAND<sup>&reg;</sup>神戸</span>
+			<span class="slowhand-header-logo-sub"><small class="slowhand-header-logo-sub-prefix">レンタルスペース</small> ゆめみ堂</span>
+		</a>
+	</div>
+	<?php
 }

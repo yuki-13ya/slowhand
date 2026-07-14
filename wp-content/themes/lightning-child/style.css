@@ -36,11 +36,17 @@ Version: 0.6.1
   --color-link: var(--color-primary-light);
 
   /* ゆめみ堂 ラベンダー */
-  /* 指定のメインカラーは #A886B8 だが、見出し・ボタン・アイコンで薄く見えすぎないよう少し濃いめに調整 */
-  --color-accent: #88569F;
+  /* ロゴの実際の色 #70419C にブランドカラーを統一 */
+  --color-accent: #70419C;
   --color-accent-light: #EADAF2;
   --color-accent-tint-bg: #F3F1F6;
   --color-accent-tint-border: var(--color-border);
+
+  /* サイト全体の差し色（シャンパンゴールド）: ヘッダー/フッター/見出し装飾で使用。
+     華美なメタリック感を避け、落ち着いた質感の淡いゴールドに寄せる */
+  --color-gold: #B8935B;
+  --color-gold-light: #D9BE93;
+  --color-gold-tint-bg: #F6EEDF;
 }
 
 body {
@@ -67,15 +73,20 @@ textarea,
 }
 
 /***************************
- * 見出しH2　青い2色バーがついているもの
+ * 見出しH2　英字ラベル＋金の横線（全ページ共通ルール、中央寄せ）
  * **************************/
-.section-heading {
+.section-heading,
+.wp-block-heading.section-heading,
+h2.section-heading {
+  position: relative;
+  display: block;
+  width: 100%;
   text-align: center;
   border: 0;
   background: transparent;
   padding: 0;
-  margin: 50px 0 32px;
-  margin-block-start: 50px;
+  margin: 100px 0 32px;
+  margin-block-start: 100px;
   margin-block-end: 32px;
   color: var(--color-primary);
   font-size: 36px;
@@ -84,33 +95,32 @@ textarea,
 }
 
 .section-heading::before {
-  content: "";
-  display: block;
-  width: 72px;
-  height: 10px;
-  margin: 0 auto 18px;
-  background: linear-gradient(
-    to right,
-    var(--color-primary) 0%,
-    var(--color-primary) 50%,
-    var(--color-primary-light) 50%,
-    var(--color-primary-light) 100%
-  );
+  content: none;
 }
 
 .section-heading::after {
   content: none;
 }
 
-.section-heading,
-.wp-block-heading.section-heading,
-h2.section-heading {
-  text-align: center;
-  display: block;
-  width: 100%;
-  margin: 100px 0 32px;
-  margin-block-start: 100px;
-  margin-block-end: 32px;
+.section-heading-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: var(--color-gold);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.section-heading-label::before,
+.section-heading-label::after {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--color-gold);
 }
 
 .section-heading.has-text-align-left,
@@ -134,10 +144,14 @@ h2.section-heading {
     line-height: 1.35;
   }
 
-  .section-heading::before {
-    width: 56px;
-    height: 7px;
-    margin-bottom: 12px;
+  .section-heading-label {
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .section-heading-label::before,
+  .section-heading-label::after {
+    width: 16px;
   }
 }
 
@@ -145,17 +159,89 @@ h2.section-heading {
  * ヘッダー色
  * ***************/
 .site-header {
- background-color:var(--color-primary);
+ background-color: var(--color-bg-base);
+ border-bottom: 1px solid var(--color-border);
 }
 .site-header.site-header--layout--nav-float
  {
- background-color:var(--color-primary);
+ background-color: var(--color-bg-base);
 }
 
-/*ロゴ*/
+/*ロゴ（旧・サイトタイトルのテキストは視覚的に隠し、独自の2行ロゴに差し替え）*/
 .site-header-logo a {
-    color:#fff;
+    color: var(--color-primary);
 }
+
+.site-header-logo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/***************************
+ * ヘッダー: テキストロゴ（1段構成）
+ * **************************/
+#site-header-container {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  align-items: flex-end;
+}
+
+.slowhand-header-logo {
+  flex: 0 0 auto;
+}
+
+.slowhand-header-logo a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.slowhand-header-logo-brand {
+  background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 55%, var(--color-gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.slowhand-header-logo-sub {
+  margin-top: 2px;
+  background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 55%, var(--color-gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.slowhand-header-logo-sub-prefix {
+  font-size: 14px;
+}
+
+@media (max-width: 991px) {
+  .slowhand-header-logo-brand {
+    font-size: 20px;
+  }
+
+  .slowhand-header-logo-sub {
+    font-size: 20px;
+  }
+
+  .slowhand-header-logo-sub-prefix {
+    font-size: 12px;
+  }
+}
+
 /***************************
  * *グローバルナビ
  * ***********/
@@ -163,7 +249,69 @@ h2.section-heading {
 .global-nav-list>li .global-nav-name
 {
 	font-size: 16px;
-	color:#FFF;
+	color: var(--color-primary);
+	font-family: var(--font-heading);
+}
+
+/* メニュー項目の上下余白を半分程度に詰める。
+   セレクタの詳細度・読み込み順ともに同等のテーマ側ルールに実際には負けるため
+   （検証済み）、!important が必要 */
+.global-nav-list > li > a {
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
+}
+
+/* 現在地・ホバー: 金文字＋薄い背景（角丸なし、リンクのパディング全体を塗る） */
+.global-nav-list > li.current-menu-item > a,
+.global-nav-list > li.current-menu-ancestor > a,
+.global-nav-list > li.current_page_item > a,
+.global-nav-list > li > a:hover,
+.global-nav-list > li > a:focus {
+  background-color: rgba(184, 147, 91, 0.12);
+}
+
+.global-nav-list > li.current-menu-item .global-nav-name,
+.global-nav-list > li.current-menu-ancestor .global-nav-name,
+.global-nav-list > li.current_page_item .global-nav-name,
+.global-nav-list > li > a:hover .global-nav-name,
+.global-nav-list > li > a:focus .global-nav-name {
+  color: var(--color-gold);
+}
+
+/* サブメニュー（レンタルスペースのホバーで出るメニュー）も同じ金トーンに */
+.global-nav-list > li > ul.sub-menu {
+  background-color: var(--color-gold-tint-bg);
+}
+
+.global-nav-list .sub-menu li a,
+.global-nav-list .sub-menu li a:hover {
+  color: var(--color-primary);
+  border-bottom-color: rgba(184, 147, 91, 0.25);
+}
+
+.global-nav-list .sub-menu li a:hover,
+.global-nav-list .sub-menu li a:focus-within {
+  background-color: rgba(184, 147, 91, 0.25);
+}
+
+/* メニュー全体を横幅に対して中央寄せにし、項目間に縦線を入れる */
+.global-nav-list {
+  justify-content: center;
+}
+
+.global-nav-list > li + li {
+  position: relative;
+}
+
+.global-nav-list > li + li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 16px;
+  background: var(--color-border);
 }
 
 /* モバイルメニューではサブメニューを最初から表示する */
@@ -189,16 +337,23 @@ h2.section-heading {
  * フッター色
  * ***************/
 .site-footer {
- background-color:var(--color-primary);
+ background-color: var(--color-bg-base);
+ border-top: 1px solid var(--color-border);
 }
 /* フッター内のテキスト */
 .site-footer,
 .site-footer p,
 .site-footer a,
 .site-footer li {
-  color: #fff;
+  color: var(--color-text);
+  font-family: var(--font-heading);
   font-size: 16px;
   line-height: 1.8;
+}
+
+/* フッター内の箇条書きマーカーを金に */
+.site-footer li::marker {
+  color: var(--color-gold);
 }
 
 /* フッター内の段落余白 */
@@ -245,7 +400,7 @@ h2.section-heading {
 .site-footer-content .row > div:nth-child(2) :where(a, .wp-block-navigation-item__content) {
   display: block;
   padding: 2px 0;
-  color: #fff;
+  color: var(--color-text);
   font-weight: 700;
   line-height: 1.35;
   text-decoration: none;
@@ -270,7 +425,7 @@ h2.section-heading {
 .slowhand-footer-menu-label {
   display: block;
   padding: 6px 0 0;
-  color: #fff;
+  color: var(--color-text);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.35;
@@ -299,6 +454,7 @@ h2.section-heading {
   border-top: 0;
   border-bottom: 0;
   border-left: 0;
+  padding: 0;
   box-shadow: none;
   background-image: none;
 }
@@ -441,125 +597,100 @@ h2.section-heading {
   max-width: 980px;
 }
 
-/*************************
- * ゆめみ堂 見出し
- * ***********************/
-.page-yumemido .section-heading {
-  color: var(--color-accent);
-}
-
-.page-yumemido .section-heading::before {
-  background: linear-gradient(
-    to right,
-    var(--color-accent) 0%,
-    var(--color-accent) 50%,
-    var(--color-accent-light) 50%,
-    var(--color-accent-light) 100%
-  );
-}
-
 
 /***********************************
  * TOP 施設誘導カード
+ * 写真をカード全体に敷き、下部をグラデーションで暗くして
+ * その上に白文字の情報を乗せる構成。カード全体はクリック可能
+ * （実際のリンクは「詳しく見る」ボタンで、CSSでカード全体まで
+ * クリック範囲を広げるstretched-link手法を使用）。
  * *********************************/
 .top-facility-cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
   gap: 32px;
-  max-width: 1200px;
-  margin: 48px auto 80px;
+  max-width: 1400px;
+  margin: 0 auto 60px;
   padding: 0 24px;
   box-sizing: border-box;
 }
 
 .top-facility-card {
+  position: relative;
   display: flex;
-  align-self: start;
+  align-self: stretch;
   flex-direction: column;
+  justify-content: flex-end;
   gap: 0;
-  padding: 16px;
-  border: 2px solid var(--color-primary);
-  border-radius: 8px;
-  background: #fff;
+  height: clamp(380px, 26vw, 460px);
+  padding: 24px 24px 16px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 16px;
+  background: var(--color-primary);
   box-sizing: border-box;
 }
 
-.top-facility-card figure img,
+/* Gutenbergがfigure/imgに直接書き込むインラインstyle（margin/width/height）に勝つため!important */
+.top-facility-card figure.wp-block-image {
+  margin: 0 !important;
+}
+
+/* Lightningテーマの .wp-block-image img:not([style*=object-fit]){height:auto!important}
+   は詳細度(0,2,1)で通常の(0,1,2)より強いため、.wp-block-imageを含めて詳細度を上げて勝つ */
+.top-facility-card figure.wp-block-image img,
 .top-facility-card > img {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0;
   display: block;
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+}
+
+/* 写真下部を暗くするグラデーション（暗くしすぎない） */
+.top-facility-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
 }
 
 .top-facility-card .top-facility-line-image {
-  width: 100%;
-  margin: 16px 0 0;
-  line-height: 0;
-}
-
-.top-facility-card .top-facility-line-image a {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
-.top-facility-card .top-facility-line-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
+  display: none;
 }
 
 .top-facility-card h3,
 .top-facility-card .top-facility-name,
 .top-facility-card .wp-block-heading.top-facility-name {
-  margin: 0 8px;
+  position: relative;
+  z-index: 2;
+  margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
   border: 0;
   background: transparent;
   box-shadow: none;
-  color: var(--color-primary);
-  font-size: 28px;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 30px;
   font-weight: 700;
-  line-height: 1.4;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  line-height: 1.35;
+  display: block;
+  text-align: left;
 }
 
-.top-facility-card .top-facility-name::before,
-.top-facility-card .wp-block-heading.top-facility-name::before {
-  content: "";
-  display: inline-block;
-  flex: 0 0 38px;
-  width: 38px;
-  height: 38px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  line-height: 1;
-}
-
-.slowhand-facility-card .top-facility-name,
-.slowhand-facility-card .wp-block-heading.top-facility-name {
-  color: var(--color-primary);
-}
-
-.slowhand-facility-card .top-facility-name::before,
-.slowhand-facility-card .wp-block-heading.top-facility-name::before {
-  background-image: url("images/slowhand-icon.svg");
-}
-
-.yumemido-facility-card .top-facility-name,
-.yumemido-facility-card .wp-block-heading.top-facility-name {
-  color: var(--color-accent);
-}
-
-.yumemido-facility-card .top-facility-name::before,
-.yumemido-facility-card .wp-block-heading.top-facility-name::before {
-  background-image: url("images/yumemido-icon.svg");
+/* 「レンタルスペース」のような小さい前置き行 */
+.top-facility-name-kicker {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .top-facility-card h3::after,
@@ -569,90 +700,135 @@ h2.section-heading {
   display: none;
 }
 
-.top-facility-card ul {
-  margin: 10px 8px 0;
+/* ブランドバッジ：カード左上に固定配置 */
+.top-facility-card::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  width: 56px;
+  height: 56px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.slowhand-facility-card .top-facility-card::after {
+  background-image: url("images/slowhand-top-logo.webp");
+}
+
+.yumemido-facility-card .top-facility-card::after {
+  background-image: url("images/yumemido-top-logo.webp");
 }
 
 .top-facility-card .top-facility-copy,
 .top-facility-card p.top-facility-copy {
-  margin: 12px 8px 0;
-  font-size: 24px;
+  position: relative;
+  z-index: 2;
+  margin: 4px 0 0 !important;
+  font-family: var(--font-heading);
+  font-size: 18px;
   font-weight: 700;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .slowhand-facility-card .top-facility-copy,
 .slowhand-facility-card p.top-facility-copy {
-  color: var(--color-primary);
+  color: var(--color-primary-light);
 }
 
 .yumemido-facility-card .top-facility-copy,
 .yumemido-facility-card p.top-facility-copy {
-  color: var(--color-accent);
+  color: var(--color-accent-light);
 }
 
-.top-facility-card .top-facility-copy + ul {
-  margin-top: 14px;
+/* タグ行とボタンを横並びにするラッパー */
+.top-facility-tags-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 10px !important;
+}
+
+/* タグ：白抜きの角丸ピル、自然に折り返して複数段になる。
+   VK標準の矢印リストスタイル(is-style-vk-arrow-mark)の余白・アイコンを打ち消す。 */
+.top-facility-card ul {
+  position: relative;
+  z-index: 2;
+  display: flex !important;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-inline-start: 0 !important;
+  list-style: none;
+}
+
+.top-facility-card li {
+  display: inline-flex !important;
+  align-items: center;
+  padding: 6px 16px;
+  border: 1.5px solid #fff;
+  border-radius: 999px;
+  margin: 0 !important;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.top-facility-card li::before {
+  content: none !important;
+  display: none !important;
 }
 
 .top-facility-card .wp-block-buttons {
+  position: relative;
+  z-index: 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  gap: 14px;
-  width: 100%;
-  margin-top: 0;
-  margin-bottom: 0;
+  flex: 0 0 auto;
+  margin: 0 !important;
 }
 
 .top-facility-card .wp-block-button {
   margin: 0;
 }
 
-.top-facility-card li::marker {
-  color: var(--color-primary);
-}
-
-.yumemido-facility-card {
-  border-color: var(--color-accent);
-}
-
-.yumemido-facility-card h3,
-.yumemido-facility-card .top-facility-name {
-  color: var(--color-accent);
-}
-
-.yumemido-facility-card li::marker {
-  color: var(--color-accent);
-}
-
-.facility-detail-button {
-  margin: 18px auto 0;
-}
-
-.top-facility-card .wp-block-button.facility-detail-button {
-  width: auto;
-  text-align: center;
-}
-
+/* 「詳しく見る」は丸い矢印ボタンにし、カード全体のクリック範囲にする。
+   Gutenbergがリンクに直接 border-radius:0px をstyle属性で書き込むため!important。 */
 .top-facility-card .wp-block-button.facility-detail-button .wp-block-button__link {
-  display: inline-flex;
+  position: relative;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  min-width: 220px;
-  max-width: 260px;
-  padding: 12px 28px;
-  border: 2px solid currentColor;
-  border-radius: 4px;
-  background: #fff;
-  font-size: 18px;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: var(--color-primary);
+  color: #fff !important;
+  font-size: 0;
+  text-decoration: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.top-facility-card .wp-block-button.facility-detail-button .wp-block-button__link::before {
+  content: "→";
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.4;
-  text-align: center;
-  text-decoration: none;
-  box-shadow: none;
+  line-height: 1;
+}
+
+.top-facility-card .wp-block-button.facility-detail-button .wp-block-button__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
 }
 
 .top-facility-card .wp-block-button.facility-detail-button .wp-block-button__link:hover,
@@ -660,13 +836,14 @@ h2.section-heading {
   text-decoration: none;
 }
 
-/* WordPress側に残る has-white-color より、施設誘導ボタンの設計色を優先する。 */
 .slowhand-facility-card .wp-block-button.facility-detail-button .wp-block-button__link {
-  color: var(--color-primary) !important;
+  background: var(--color-primary);
+  color: #fff !important;
 }
 
 .yumemido-facility-card .wp-block-button.facility-detail-button .wp-block-button__link {
-  color: var(--color-accent) !important;
+  background: var(--color-accent);
+  color: #fff !important;
 }
 
 @media (max-width: 991px) {
@@ -678,57 +855,38 @@ h2.section-heading {
   .top-facility-card h3 {
     font-size: 24px;
   }
-
-  .top-facility-card .top-facility-copy,
-  .top-facility-card p.top-facility-copy {
-    font-size: 24px;
-  }
-
 }
 
 @media (max-width: 767px) {
   .top-facility-cards {
     grid-template-columns: 1fr;
     margin: 24px auto 44px;
-    padding: 0;
+    padding: 0 16px;
   }
 
   .top-facility-card {
-    gap: 0;
-    padding: 10px;
+    min-height: 360px;
+    padding: 18px;
   }
 
   .top-facility-card h3,
   .top-facility-card .top-facility-name,
   .top-facility-card .wp-block-heading.top-facility-name {
-    margin: 0 4px;
     font-size: 22px;
     gap: 10px;
   }
 
   .top-facility-card .top-facility-name::before,
   .top-facility-card .wp-block-heading.top-facility-name::before {
-    flex-basis: 32px;
-    width: 32px;
-    height: 32px;
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
   }
 
   .top-facility-card .top-facility-copy,
   .top-facility-card p.top-facility-copy {
-    margin: 10px 4px 0;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-
-  .top-facility-card ul {
-    margin: 10px 4px 0;
-  }
-
-  .top-facility-card .wp-block-button.facility-detail-button .wp-block-button__link {
-    min-width: 190px;
     font-size: 16px;
   }
-
 }
 
 
@@ -1256,7 +1414,9 @@ h2.section-heading {
   background-image: url("images/aboutus-hero.jpg");
 }
 
-.page-header {
+/* アクセスページ: スラッグが日本語（パーセントエンコード）でpage-{slug}クラスが
+   空になるため、確実なpage-id-16（固定ページID）でスコープする */
+.page-id-16 .page-header {
   background-image: url("images/access-hero.jpg");
 }
 
@@ -1856,10 +2016,10 @@ h2.section-heading {
   }
 }
 /*************************
- * 下層ページ内ナビ SLOWHAND
+ * 下層ページ内ナビ（SLOWHAND / ゆめみ堂 共通レイアウト。色のみブランド別）
  * ***********************/
-
-.slowhand-page-nav {
+.slowhand-page-nav,
+.yumemido-page-nav {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
@@ -1869,8 +2029,8 @@ h2.section-heading {
 }
 
 /* 各カラムをボタン風にする */
-.slowhand-page-nav > .wp-block-column {
-  border: 2px solid var(--color-primary);
+.slowhand-page-nav > .wp-block-column,
+.yumemido-page-nav > .wp-block-column {
   background: #fff;
   min-height: 92px;
   display: flex;
@@ -1879,11 +2039,19 @@ h2.section-heading {
   box-sizing: border-box;
 }
 
+.slowhand-page-nav > .wp-block-column {
+  border: 2px solid var(--color-primary);
+}
+
+.yumemido-page-nav > .wp-block-column {
+  border: 2px solid var(--color-accent);
+}
+
 /* 中の見出し */
-.slowhand-page-nav h3 {
+.slowhand-page-nav h3,
+.yumemido-page-nav h3 {
   margin: 0;
   padding: 0;
-  color: var(--color-primary);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.4;
@@ -1891,23 +2059,47 @@ h2.section-heading {
   letter-spacing: 0.04em;
 }
 
-.slowhand-page-nav a {
-  color: var(--color-primary) !important;
+.slowhand-page-nav h3 {
+  color: var(--color-primary);
+}
+
+.yumemido-page-nav h3 {
+  color: var(--color-accent);
+}
+
+.slowhand-page-nav a,
+.slowhand-page-nav a:hover,
+.yumemido-page-nav a,
+.yumemido-page-nav a:hover {
   text-decoration: none;
 }
 
+.slowhand-page-nav a,
 .slowhand-page-nav a:hover {
   color: var(--color-primary) !important;
-  text-decoration: none;
+}
+
+.yumemido-page-nav a,
+.yumemido-page-nav a:hover {
+  color: var(--color-accent) !important;
 }
 
 .slowhand-page-nav > .wp-block-column:hover {
   background: var(--color-primary-tint-bg);
 }
 
+.yumemido-page-nav > .wp-block-column:hover {
+  background: var(--color-accent-tint-bg);
+}
+
 .slowhand-page-nav > .wp-block-column:hover h3,
 .slowhand-page-nav > .wp-block-column:hover a {
   color: var(--color-primary) !important;
+}
+
+.yumemido-page-nav > .wp-block-column:hover h3,
+.yumemido-page-nav > .wp-block-column:hover a {
+  color: var(--color-accent) !important;
 }
 
 /* 現在ページの枠 */
@@ -1917,9 +2109,16 @@ h2.section-heading {
   background: var(--color-primary-tint-bg);
 }
 
+.yumemido-page-nav > .wp-block-column.is-current {
+  outline: 3px solid var(--color-accent-light);
+  outline-offset: 2px;
+  background: var(--color-accent-tint-bg);
+}
+
 /* スマホ対応：2列2行 */
 @media (max-width: 600px) {
-  .slowhand-page-nav {
+  .slowhand-page-nav,
+  .yumemido-page-nav {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px;
@@ -1927,7 +2126,8 @@ h2.section-heading {
     padding: 0;
   }
 
-  .slowhand-page-nav > .wp-block-column {
+  .slowhand-page-nav > .wp-block-column,
+  .yumemido-page-nav > .wp-block-column {
     width: auto !important;
     flex-basis: auto !important;
     min-width: 0 !important;
@@ -1935,7 +2135,8 @@ h2.section-heading {
     padding: 8px;
   }
 
-  .slowhand-page-nav h3 {
+  .slowhand-page-nav h3,
+  .yumemido-page-nav h3 {
     font-size: 16px;
     line-height: 1.35;
     letter-spacing: 0.02em;
@@ -1943,240 +2144,44 @@ h2.section-heading {
 }
 
 /*************************
- * SLOWHAND 特徴セクション
+ * 特徴セクション（SLOWHAND / ゆめみ堂 共通レイアウト。色のみブランド別）
  ************************/
-.slowhand-feature-section {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  padding: 56px 24px 80px;
-  background: var(--color-primary-tint-bg);
-  box-sizing: border-box;
-}
-
-.slowhand-feature-section * {
-  box-sizing: border-box;
-}
-
-.slowhand-feature-inner {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto !important;
-}
-
-.slowhand-feature-section .section-heading {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.slowhand-feature-lead {
-  max-width: 860px;
-  margin: 32px auto 32px !important;
-  color: #333;
-  font-size: 17px;
-  line-height: 1.9;
-  text-align: center;
-}
-
-.slowhand-feature-points {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  width: 100%;
-  max-width: 860px !important;
-  margin: 0 auto 36px !important;
-}
-
-.slowhand-feature-points > .slowhand-feature-point {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: none !important;
-  min-height: 72px;
-  margin: 0 !important;
-  padding: 14px 10px;
-  border: 1px solid var(--color-primary-tint-border);
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 72, 182, 0.06);
-  color: var(--color-primary);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.35;
-  text-align: center;
-}
-
-.slowhand-feature-cards {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-  width: 100%;
-  max-width: none !important;
-  margin: 0 !important;
-}
-
-.slowhand-feature-cards > .slowhand-feature-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 22px;
-  width: 100%;
-  max-width: none !important;
-  min-height: 210px;
-  margin: 0 !important;
-  padding: 30px 28px;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 4px 16px rgba(0, 72, 182, 0.08);
-}
-
-.slowhand-feature-card > .wp-block-group {
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: none !important;
-  margin: 0 !important;
-}
-
-.slowhand-feature-card .slowhand-feature-icon {
-  display: flex;
-  flex: 0 0 78px;
-  align-items: center;
-  justify-content: center;
-  width: 78px;
-  height: 78px;
-  margin: 0 !important;
-  border-radius: 50%;
-  background: var(--color-primary-tint-bg);
-  color: var(--color-primary);
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.slowhand-feature-card h3 {
-  margin: 0 0 12px !important;
-  color: var(--color-primary);
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-.slowhand-feature-card h3::after {
-  content: none;
-  display: none;
-}
-
-.slowhand-feature-card p:not(.slowhand-feature-icon) {
-  margin: 0 !important;
-  color: #333;
-  font-size: 16px;
-  line-height: 1.9;
-}
-
-@media (max-width: 991px) {
-  .slowhand-feature-inner {
-    max-width: 900px;
-  }
-
-  .slowhand-feature-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 767px) {
-  .slowhand-feature-section {
-    padding: 28px 10px 36px;
-  }
-
-  .slowhand-feature-lead {
-    margin: 14px auto 16px !important;
-    font-size: 15px;
-    line-height: 1.8;
-    text-align: left;
-  }
-
-  .slowhand-feature-points {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    margin-bottom: 16px !important;
-  }
-
-  .slowhand-feature-points > .slowhand-feature-point {
-    min-height: 44px;
-    padding: 8px 6px;
-    font-size: 14px;
-  }
-
-  .slowhand-feature-cards {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .slowhand-feature-cards > .slowhand-feature-card {
-    gap: 12px;
-    min-height: auto;
-    padding: 12px 14px;
-    border: 1px solid var(--color-primary-tint-border);
-    border-radius: 6px;
-    box-shadow: none;
-  }
-
-  .slowhand-feature-card .slowhand-feature-icon {
-    flex: 0 0 42px;
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
-  }
-
-  .slowhand-feature-card h3 {
-    margin-bottom: 4px !important;
-    font-size: 17px;
-    line-height: 1.4;
-  }
-
-  .slowhand-feature-card p:not(.slowhand-feature-icon) {
-    font-size: 14px;
-    line-height: 1.65;
-  }
-}
-
-@media (max-width: 420px) {
-  .slowhand-feature-cards > .slowhand-feature-card {
-    display: flex;
-  }
-
-  .slowhand-feature-card .slowhand-feature-icon {
-    margin-bottom: 0 !important;
-  }
-}
-
-/*************************
- * ゆめみ堂 特徴セクション
- ************************/
+.slowhand-feature-section,
 .yumemido-feature-section {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding: 56px 24px 80px;
-  background: var(--color-accent-tint-bg);
   box-sizing: border-box;
 }
 
+.slowhand-feature-section {
+  background: var(--color-primary-tint-bg);
+}
+
+.yumemido-feature-section {
+  background: var(--color-accent-tint-bg);
+}
+
+.slowhand-feature-section *,
 .yumemido-feature-section * {
   box-sizing: border-box;
 }
 
+.slowhand-feature-inner,
 .yumemido-feature-inner {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto !important;
 }
 
+.slowhand-feature-section .section-heading,
 .yumemido-feature-section .section-heading {
   margin-right: auto;
   margin-left: auto;
 }
 
+.slowhand-feature-lead,
 .yumemido-feature-lead {
   max-width: 860px;
   margin: 32px auto 32px !important;
@@ -2186,6 +2191,7 @@ h2.section-heading {
   text-align: center;
 }
 
+.slowhand-feature-points,
 .yumemido-feature-points {
   display: grid !important;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2195,6 +2201,7 @@ h2.section-heading {
   margin: 0 auto 36px !important;
 }
 
+.slowhand-feature-points > .slowhand-feature-point,
 .yumemido-feature-points > .yumemido-feature-point {
   display: flex;
   align-items: center;
@@ -2204,17 +2211,27 @@ h2.section-heading {
   min-height: 72px;
   margin: 0 !important;
   padding: 14px 10px;
-  border: 1px solid var(--color-accent-tint-border);
   border-radius: 8px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(236, 79, 165, 0.10);
-  color: var(--color-accent);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.35;
   text-align: center;
 }
 
+.slowhand-feature-points > .slowhand-feature-point {
+  border: 1px solid var(--color-primary-tint-border);
+  box-shadow: 0 2px 8px rgba(20, 40, 93, 0.06);
+  color: var(--color-primary);
+}
+
+.yumemido-feature-points > .yumemido-feature-point {
+  border: 1px solid var(--color-accent-tint-border);
+  box-shadow: 0 2px 8px rgba(112, 65, 156, 0.1);
+  color: var(--color-accent);
+}
+
+.slowhand-feature-cards,
 .yumemido-feature-cards {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2224,6 +2241,7 @@ h2.section-heading {
   margin: 0 !important;
 }
 
+.slowhand-feature-cards > .slowhand-feature-card,
 .yumemido-feature-cards > .yumemido-feature-card {
   display: flex;
   align-items: flex-start;
@@ -2235,9 +2253,17 @@ h2.section-heading {
   padding: 30px 28px;
   border-radius: 10px;
   background: #fff;
-  box-shadow: 0 4px 16px rgba(236, 79, 165, 0.10);
 }
 
+.slowhand-feature-cards > .slowhand-feature-card {
+  box-shadow: 0 4px 16px rgba(20, 40, 93, 0.08);
+}
+
+.yumemido-feature-cards > .yumemido-feature-card {
+  box-shadow: 0 4px 16px rgba(112, 65, 156, 0.12);
+}
+
+.slowhand-feature-card > .wp-block-group,
 .yumemido-feature-card > div,
 .yumemido-feature-card > .wp-block-group {
   flex: 1 1 auto;
@@ -2246,6 +2272,7 @@ h2.section-heading {
   margin: 0 !important;
 }
 
+.slowhand-feature-card .slowhand-feature-icon,
 .yumemido-feature-card .yumemido-feature-icon {
   display: flex;
   flex: 0 0 78px;
@@ -2255,26 +2282,44 @@ h2.section-heading {
   height: 78px;
   margin: 0 !important;
   border-radius: 50%;
-  background: var(--color-accent-tint-bg);
-  color: var(--color-accent);
   font-size: 34px;
   font-weight: 700;
   line-height: 1;
 }
 
+.slowhand-feature-card .slowhand-feature-icon {
+  background: var(--color-primary-tint-bg);
+  color: var(--color-primary);
+}
+
+.yumemido-feature-card .yumemido-feature-icon {
+  background: var(--color-accent-tint-bg);
+  color: var(--color-accent);
+}
+
+.slowhand-feature-card h3,
 .yumemido-feature-card h3 {
   margin: 0 0 12px !important;
-  color: var(--color-accent);
   font-size: 22px;
   font-weight: 700;
   line-height: 1.5;
 }
 
+.slowhand-feature-card h3 {
+  color: var(--color-primary);
+}
+
+.yumemido-feature-card h3 {
+  color: var(--color-accent);
+}
+
+.slowhand-feature-card h3::after,
 .yumemido-feature-card h3::after {
   content: none;
   display: none;
 }
 
+.slowhand-feature-card p:not(.slowhand-feature-icon),
 .yumemido-feature-card p:not(.yumemido-feature-icon) {
   margin: 0 !important;
   color: #333;
@@ -2283,20 +2328,24 @@ h2.section-heading {
 }
 
 @media (max-width: 991px) {
+  .slowhand-feature-inner,
   .yumemido-feature-inner {
     max-width: 900px;
   }
 
+  .slowhand-feature-cards,
   .yumemido-feature-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 767px) {
+  .slowhand-feature-section,
   .yumemido-feature-section {
     padding: 28px 10px 36px;
   }
 
+  .slowhand-feature-lead,
   .yumemido-feature-lead {
     margin: 14px auto 16px !important;
     font-size: 15px;
@@ -2304,32 +2353,44 @@ h2.section-heading {
     text-align: left;
   }
 
+  .slowhand-feature-points,
   .yumemido-feature-points {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     margin-bottom: 16px !important;
   }
 
+  .slowhand-feature-points > .slowhand-feature-point,
   .yumemido-feature-points > .yumemido-feature-point {
     min-height: 44px;
     padding: 8px 6px;
     font-size: 14px;
   }
 
+  .slowhand-feature-cards,
   .yumemido-feature-cards {
     grid-template-columns: 1fr;
     gap: 8px;
   }
 
+  .slowhand-feature-cards > .slowhand-feature-card,
   .yumemido-feature-cards > .yumemido-feature-card {
     gap: 12px;
     min-height: auto;
     padding: 12px 14px;
-    border: 1px solid var(--color-accent-tint-border);
     border-radius: 6px;
     box-shadow: none;
   }
 
+  .slowhand-feature-cards > .slowhand-feature-card {
+    border: 1px solid var(--color-primary-tint-border);
+  }
+
+  .yumemido-feature-cards > .yumemido-feature-card {
+    border: 1px solid var(--color-accent-tint-border);
+  }
+
+  .slowhand-feature-card .slowhand-feature-icon,
   .yumemido-feature-card .yumemido-feature-icon {
     flex: 0 0 42px;
     width: 42px;
@@ -2337,12 +2398,14 @@ h2.section-heading {
     font-size: 20px;
   }
 
+  .slowhand-feature-card h3,
   .yumemido-feature-card h3 {
     margin-bottom: 4px !important;
     font-size: 17px;
     line-height: 1.4;
   }
 
+  .slowhand-feature-card p:not(.slowhand-feature-icon),
   .yumemido-feature-card p:not(.yumemido-feature-icon) {
     font-size: 14px;
     line-height: 1.65;
@@ -2350,95 +2413,14 @@ h2.section-heading {
 }
 
 @media (max-width: 420px) {
+  .slowhand-feature-cards > .slowhand-feature-card,
   .yumemido-feature-cards > .yumemido-feature-card {
     display: flex;
   }
 
+  .slowhand-feature-card .slowhand-feature-icon,
   .yumemido-feature-card .yumemido-feature-icon {
     margin-bottom: 0 !important;
-  }
-}
-
-/*************************
- * 下層ページ内ナビ　ゆめみ堂
- *************************/
-
-.yumemido-page-nav {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  max-width: 990px;
-  margin: 40px auto;
-  padding: 0;
-}
-
-/* 各カラムをボタン風にする */
-.yumemido-page-nav > .wp-block-column {
-  border: 2px solid var(--color-accent);
-  background: #fff;
-  min-height: 92px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
-/* 中の見出し */
-.yumemido-page-nav h3 {
-  margin: 0;
-  padding: 0;
-  color: var(--color-accent);
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1.4;
-  text-align: center;
-  letter-spacing: 0.04em;
-}
-
-.yumemido-page-nav a {
-  color: var(--color-accent) !important;
-  text-decoration: none;
-}
-
-.yumemido-page-nav a:hover {
-  color: var(--color-accent) !important;
-  text-decoration: none;
-}
-
-/* 現在ページの枠 */
-.yumemido-page-nav > .wp-block-column.is-current {
-  outline: 3px solid var(--color-accent-light);
-  outline-offset: 2px;
-  background: var(--color-accent-tint-bg);
-}
-
-/* ホバー時 */
-.yumemido-page-nav > .wp-block-column:hover {
-  background: var(--color-accent-tint-bg);
-}
-
-/* スマホ対応：2列2行 */
-@media (max-width: 600px) {
-  .yumemido-page-nav {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px;
-    margin: 20px auto 28px;
-    padding: 0;
-  }
-
-  .yumemido-page-nav > .wp-block-column {
-    width: auto !important;
-    flex-basis: auto !important;
-    min-width: 0 !important;
-    min-height: 58px;
-    padding: 8px;
-  }
-
-  .yumemido-page-nav h3 {
-    font-size: 16px;
-    line-height: 1.35;
-    letter-spacing: 0.02em;
   }
 }
 
@@ -2704,6 +2686,12 @@ h2.section-heading {
     padding: 10px 16px 10px 14px;
     border-radius: 999px 0 0 999px;
   }
+
+  /* TOPページのファーストビュー（施設カードが画面内にある間）だけ、右端の浮遊ボタンを隠す。
+     is-hero-visible は functions.php 側の IntersectionObserver が付け外しする。 */
+  .home .slowhand-line-buttons.is-hero-visible {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -2723,5 +2711,140 @@ h2.section-heading {
     white-space: normal;
     text-align: center;
     line-height: 1.2;
+  }
+}
+
+/*************************
+ * TOPページ ヒーロー（画像なし・テキストのみ）
+ *************************/
+.ltg-slide,
+.swiper-slide.item-1,
+.swiper-slide.item-2 {
+  min-height: clamp(320px, 30vw, 480px);
+}
+
+@media (max-width: 767px) {
+  .ltg-slide,
+  .swiper-slide.item-1,
+  .swiper-slide.item-2 {
+    min-height: 420px;
+  }
+}
+
+.ltg-slide-item-img,
+.ltg-slide-cover {
+  display: none;
+}
+
+/* カスタマイザー側の文字色設定がインラインstyleで書き込まれるため!important */
+.ltg-slide-text-title {
+  color: var(--color-primary) !important;
+  font-weight: 700;
+  text-shadow: none !important;
+}
+
+/* 見出し内で一部だけアクセントカラーにする単語用 */
+.hero-title-accent {
+  color: var(--color-accent) !important;
+}
+
+.ltg-slide-text-caption {
+  color: var(--color-primary) !important;
+  font-family: var(--font-heading);
+  text-shadow: none !important;
+}
+
+/*************************
+ * TOP 施設カード＋LINE予約バー（PC）
+ * カードとバーを1組にまとめるラッパー。
+ * スマホは下部固定バー（common/LINEボタン）が既にあるため、
+ * この帯はPC幅のみ表示する。
+ *************************/
+.top-facility-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-facility-column .top-facility-card {
+  border-radius: 16px 16px 0 0;
+}
+
+.top-facility-line-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 16px;
+  border-radius: 0 0 16px 16px;
+  color: #fff !important;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.top-facility-line-bar-icon {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.top-facility-line-bar-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.top-facility-line-bar-slowhand {
+  background: var(--color-primary);
+}
+
+.top-facility-line-bar-yumemido {
+  background: var(--color-accent);
+}
+
+/*************************
+ * TOPページ ヒーロー・カード幅
+ * 標準のBootstrap .container幅だと左右余白が広すぎて見えるため、
+ * 施設カードと横幅を揃えて画面幅を活かす。
+ *************************/
+.mini-content-container-1.container,
+.mini-content-container-2.container {
+  max-width: 1400px;
+}
+
+/*************************
+ * TOPページ ヒーロー（テキストのみ、通常のブロックとして編集可能）
+ *************************/
+.home-hero {
+  max-width: 1400px;
+  margin: 5px auto 20px;
+  padding: 0 24px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.wp-block-heading.home-hero-title {
+  margin: 0 0 10px;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.home-hero-subtitle {
+  margin: 0;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .home-hero {
+    margin: 16px auto 12px;
   }
 }
